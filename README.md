@@ -1,12 +1,11 @@
-# Blockchain lab - Fraunhofer
+# Chain Blocks
 
-Webpack project with Truffle. Includes contracts, migrations, tests, user interface and webpack build pipeline.
+Visualize your blockchain with blocks!
 
 ## Usage
 
-To initialize a project with this exapmple, run `truffle init webpack` inside an empty directory.
+To initialize use this project, clone the git and run `npm install`.
 
-## Building and the frontend
+## To start the frontend
 
-1. First run `truffle compile`, then run `truffle migrate` to deploy the contracts onto your network of choice (default "development").
-1. Then run `npm run dev` to build the app and serve it on http://localhost:8080
+2. Then run `npm run start` to build the app and serve it on http://localhost:8085
