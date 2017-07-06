@@ -1,5 +1,3 @@
-.btn-sq {
-  width: 80px !important;
-  height: 80px !important;
-  padding:10px;
+.card{
+  border: 1px rgb(147, 147, 147) solid;
 }

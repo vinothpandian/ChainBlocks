@@ -10,7 +10,7 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: path.join(__dirname, "build"),
-        port: 8085
+        port: 8100
     },
     plugins: [// Copy our app's index.html to the build folder.
         new CopyWebpackPlugin([
