@@ -1,3 +1,12 @@
 .card{
   border: 1px rgb(147, 147, 147) solid;
 }
+
+.btn-bordered {
+  border: 1px #50a6df solid;
+}
+
+.new-block {
+  border: 1px #EF8A80 solid;
+  box-shadow: 0 0 3px #EF8A80 inset;
+}
