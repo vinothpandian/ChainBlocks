@@ -62,7 +62,7 @@ class Blocks extends React.Component {
   }
 }
 
-var lastBlock = 0;
+var lastBlock = web3.eth.blockNumber-1;
 var timeSinceLastBlock = 0;
 var myVar;
 
@@ -77,9 +77,15 @@ var lastBlockID;
 function alertFunc() {
   timeSinceLastBlock++;
   if (lastBlock != web3.eth.blockNumber) {
-    lastBlock = web3.eth.blockNumber;
     $(lastBlockID+">div>div:first-child").removeClass("new-block")
-    addBlock(lastBlock);
+
+    for (var i = lastBlock; i < web3.eth.blockNumber; i++) {
+      addBlock(i);
+    }
+
+    lastBlock = web3.eth.blockNumber;
+
+
     timeSinceLastBlock = 0;
   }
   ReactDOM.render(
@@ -94,6 +100,7 @@ function addBlock(i) {
   var txNo = info.transactions.length;
   var idVal = "box-" + blockNumber;
   var time = timeConverter(info.timestamp);
+  bgColor = "#ECF0F1";
   if (txNo>0) {
     bgColor = "#CCFCDD";
   }
@@ -105,7 +112,10 @@ function addBlock(i) {
     document.getElementById(idVal)
   );
 
-  lastBlockID = "#box-"+blockNumber
+  lastBlockID = "#box-"+ (web3.eth.blockNumber-1)
+
+console.log(lastBlockID);
+
 
   $(lastBlockID+">div>div:first-child").addClass("new-block")
 
