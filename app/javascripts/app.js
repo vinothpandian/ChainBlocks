@@ -5,6 +5,67 @@ require("bootstrap");
 //  Load the css file
 require("../stylesheets/app.css");
 require("../stylesheets/box.css");
+
+var autoLoad = true;
+var timer;
+
+myFunction(autoLoad);
+
+function loadBlocks() {
+  autoLoad = false;
+  myFunction(autoLoad);
+  $('.loader').css("-webkit-animation", "none");
+  $('.loader').css("-moz-animation", "none");
+  $('.loader').css("-ms-animation", "none");
+  $('.loader').css("animation", "none");
+
+  var start = $('#start').val()
+  var end = $('#end').val()
+
+  if($.isNumeric(start) && $.isNumeric(end)){
+    $('#grid').empty()
+    for (var i = start; i <= end; i++) {
+      addBlock(i)
+    }
+  } else {
+    alert("Enter only numeric values!")
+  }
+
+  console.log();
+}
+
+function stopLoad() {
+  if(autoLoad) {
+    $('#stopLoad').removeClass("btn-primary").addClass("btn-success").text("Play")
+    autoLoad = false;
+    myFunction(autoLoad);
+    $('.loader').css("-webkit-animation", "none");
+    $('.loader').css("-moz-animation", "none");
+    $('.loader').css("-ms-animation", "none");
+    $('.loader').css("animation", "none");
+  } else{
+    $('#stopLoad').removeClass("btn-success").addClass("btn-primary").text("Pause")
+    autoLoad = true;
+    myFunction(autoLoad);
+    $('.loader').css("-webkit-animation", "spin 2s linear infinite");
+    $('.loader').css("-moz-animation", "spin 2s linear infinite");
+    $('.loader').css("-ms-animation", "spin 2s linear infinite");
+    $('.loader').css("animation", "spin 2s linear infinite");
+
+  }
+}
+
+function restartAll(){
+  location.reload()
+}
+
+$("#loadData").on("click",loadBlocks)
+$("#stopLoad").on("click",stopLoad)
+$("#restartAll").on("click",restartAll)
+
+
+
+
 //  Connect to node using web3
 var Connection = require("./connect");
 Connection.start();
@@ -14,6 +75,25 @@ var ReactDOM = require("react-dom");
 const Modal = require("./Modal");
 
 var mountNode = document.getElementById("grid");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -64,12 +144,15 @@ class Blocks extends React.Component {
 
 var lastBlock = web3.eth.blockNumber-1;
 var timeSinceLastBlock = 0;
-var myVar;
 
-myFunction();
 
-function myFunction() {
-  myVar = setInterval(alertFunc, 1000);
+
+function myFunction(runCheck) {
+  if(runCheck) {
+    timer = setInterval(alertFunc, 1000);
+  } else {
+    clearInterval(timer);
+  }
 }
 
 var lastBlockID;
@@ -113,8 +196,6 @@ function addBlock(i) {
   );
 
   lastBlockID = "#box-"+ (web3.eth.blockNumber-1)
-
-console.log(lastBlockID);
 
 
   $(lastBlockID+">div>div:first-child").addClass("new-block")

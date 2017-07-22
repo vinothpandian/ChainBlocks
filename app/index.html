@@ -5,22 +5,42 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"> -->
+
 </head>
 
-<div class="py-5 bg-primary text-white">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="display-4 text-center">Chain of Blocks</h1>
-      </div>
+<body>
+
+<nav class="navbar navbar-inverse bg-inverse p-2">
+  <a class="navbar-brand" href="#">
+    <span class="display-2 mt-5 ml-5">
+      Chain of Blocks
+    </span>
+  </a>
+  <div>
+    <div class="loader mx-auto">
+
     </div>
-    <div class="row">
-      <div id="lastBlockTime" class="col-md-12">
+      <div id="lastBlockTime" class="text-white mx-auto mt-3">
 
       </div>
-    </div>
+
   </div>
-</div>
+</nav>
+
+<nav class="navbar navbar-faded bg-faded p-3">
+    <form class="form-inline my-2">
+      <input class="form-control mr-sm-2" type="number" id="start" min="0" placeholder="Starting Block">
+      <input class="form-control mr-sm-2" type="number" id="end" min="0" placeholder="Ending Block">
+      <button class="btn btn-outline-success  mr-sm-2 my-2 my-sm-0" type="button" id="loadData">Load Range</button>
+      <button class="btn btn-outline-danger  mr-sm-2 my-2 my-sm-0" type="button" id="restartAll">Restart</button>
+    </form>
+    <span>
+      <button class="btn btn-primary mr-3" type="button" name="button" id="stopLoad">Pause</button>
+    </span>
+</nav>
+
+
+
 <div class="p-5">
   <div class="container">
     <div class="row">
